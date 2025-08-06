@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Drawing App</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div id="toolbar">
+      <button id="uploadImageBtn">📷 Upload Image</button>
+      <button id="uploadVideoBtn">🎥 Upload Video</button>
+      <input type="file" id="imageUpload" accept="image/*" hidden />
+      <input type="file" id="videoUpload" accept="video/*" hidden />
+      <button id="uploadGifBtn">🖼️ Upload GIF</button>
+      <button id="uploadGlbBtn">🧊 Upload GLB</button>
+      <input type="file" id="gifUpload" accept="image/gif" hidden />
+      <input type="file" id="glbUpload" accept=".glb,.gltf" hidden />
+      <button id="undoBtn">↩️ Undo</button>
+      <button id="testBtn">🧪 Test Assets</button>
+
+      <!-- Model Viewer for 3D GLB -->
+      <script
+        type="module"
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+      ></script>
+
+      <input type="color" id="colorPicker" />
+      <button id="eraserBtn">🧽 Eraser</button>
+      <label
+        >Brush Size:
+        <input type="range" id="brushSize" min="1" max="50" value="5" />
+      </label>
+      <button id="clearBtn">🗑️ Clear</button>
+      <button id="saveBtn">💾 Save</button>
+    </div>
+
+    <!-- Drawing Area -->
+    <div id="drawingArea">
+      <video id="bgVideo" width="960" height="600" autoplay loop muted></video>
+      <model-viewer
+        id="bgModel"
+        alt="3D model"
+        auto-rotate
+        camera-controls
+        style="
+          display: none;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        "
+      ></model-viewer>
+      <img
+        id="bgGif"
+        style="
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          max-width: 100%;
+          max-height: 100%;
+          z-index: 1;
+        "
+      />
+
+      <canvas id="drawingCanvas" width="960" height="600"></canvas>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
